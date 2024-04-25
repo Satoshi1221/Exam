@@ -14,13 +14,13 @@ import tool.Action;
 public class TestRegistAction extends Action {
 
 	@Override
-	public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		HttpSession session = req.getSession();
 		List<String> classList = new ArrayList<>();
 
 		Teacher teacher = (Teacher)session.getAttribute("teacher");
-		String classNum = 
+		String classNum
 		ClassNumDao cDao = new ClassNumDao();
 		classList = cDao.filter(teacher);
 
