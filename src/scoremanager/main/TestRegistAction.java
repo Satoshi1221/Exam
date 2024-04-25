@@ -15,6 +15,9 @@ public class TestRegistAction extends Action {
 		HttpSession session = req.getSession();
 		Teacher teacher = (Teacher)session.getAttribute("user");
 
+		String entYearStr = "";
+		String classNum = "";
+
 	}
 
 	private void setRequestData(HttpServletRequest req, HttpServletResponse res) throws Exception {
