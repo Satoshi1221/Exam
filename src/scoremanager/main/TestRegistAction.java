@@ -22,5 +22,6 @@ public class TestRegistAction extends Action {
 	}
 	private void setRequest(HttpServletRequest req, HttpServletResponse res) throws Exception{
 
+
 	}
 }
