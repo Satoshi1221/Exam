@@ -1,5 +1,6 @@
 package scoremanager.main;
 
+<<<<<<< HEAD
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -47,3 +48,13 @@ public class TestRegistExecuteAction extends Action {
 		}
 	}
 }
+=======
+<<<<<<< HEAD
+=======
+import tool.Action;
+
+public class TestRegistAction extends Action {
+
+}
+>>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
+>>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
