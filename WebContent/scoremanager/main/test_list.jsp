@@ -13,7 +13,7 @@
 		<section class="me-4">
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照</h2>
 			<div class="my-2 text-end px-4">
-				<a>科目情報</a>
+			科目情報
 			</div>
 			<form action="" method="post">
 				<div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
@@ -50,9 +50,9 @@
 					<div class="col-2 text-center">
 						<button class="btn btn-secondary" id="filter-button">検索</button>
 					</div>
-					<div class="my-2 text-end px-4">
-				<a>学生情報</a>
-			</div>
+					<p class="my-2 text-end px-4">
+				学生情報
+			</p>
 			<form action="" method="post">
 				<div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
 					<div class="col-4">
@@ -108,7 +108,7 @@
 					</table>
 				</c:when>
 				<c:otherwise>
-					<div>学生情報が存在しませんでした</div>
+					<p>科目情報を選択または学生ボタンを入力して検索ボタンをクリックしてください</p>
 				</c:otherwise>
 			</c:choose>
 		</section>
