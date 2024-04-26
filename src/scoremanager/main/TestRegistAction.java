@@ -21,6 +21,5 @@ public class TestRegistAction extends Action {
 		req.getRequestDispatcher("test_regist.jsp").forward(req, res);
 	}
 	private void setRequest(HttpServletRequest req, HttpServletResponse res) throws Exception{
-
 	}
 }
