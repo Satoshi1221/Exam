@@ -28,8 +28,8 @@
 						</select>
 					</div>
 					<div class="col-4">
-						<th class="form-label" for="student-f1-select">クラス</th>
-						<select class="form-select" id="student-f1-select" name="f1">
+						<th class="form-label" for="student-f2-select">クラス</th>
+						<select class="form-select" id="student-f2-select" name="f2">
 							<option value="0">--------</option>
 							<c:forEach var="year" items="${ent_year_set}">
 								<%-- 現在のyearと選択されていたf1が一致していた場合selectedを追記 --%>
@@ -38,8 +38,8 @@
 						</select>
 					</div>
 					<div class="col-4">
-						<th class="form-label" for="student-f2-select">科目</th>
-						<select class="form-select" id="student-f2-select" name="f2">
+						<th class="form-label" for="student-f3-select">科目</th>
+						<select class="form-select" id="student-f3-select" name="f3">
 							<option value="0">--------</option>
 							<c:forEach var="num" items="${class_num_set}">
 								<%-- 現在のnumと選択されていたf2が一致していた場合selectedを追記 --%>
@@ -56,14 +56,14 @@
 			<form action="" method="post">
 				<div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
 					<div class="col-4">
-						<th class="form-label" for="student-f1-select">学生番号</th>
-						<select class="form-select" id="student-f1-select" name="f1">
-							<option value="0">--------</option>
+						<th class="form-label" for="student-f4-select">学生番号</th>
+						<input class="form-text" id="student-f4-select" name="f4">
+							<option value="0">学生番号を入力してください</option>
 							<c:forEach var="year" items="${ent_year_set}">
 								<%-- 現在のyearと選択されていたf1が一致していた場合selectedを追記 --%>
 								<option value="${year}" <c:if test="${year==f1}">selected</c:if>>${year}</option>
 							</c:forEach>
-						</select>
+						</input>
 					</div>
 					<div class="col-2 text-center">
 						<button class="btn btn-secondary" id="filter-button">検索</button>
