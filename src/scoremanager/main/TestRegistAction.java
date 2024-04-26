@@ -17,10 +17,21 @@ public class TestRegistAction extends Action {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
 		HttpSession session = req.getSession();
+<<<<<<< HEAD
+		List<String> classList = new ArrayList<>();
+
+		Teacher teacher = (Teacher)session.getAttribute("teacher");
+		String classNum =
+=======
 <<<<<<< HEAD
 		Teacher teacher = (Teacher)session.getAttribute("user");s
 		String classNum = "";
+>>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
 		ClassNumDao cDao = new ClassNumDao();
 		classList = cDao.filter(teacher.getSchool());
 		String entYearStr = "";
@@ -42,7 +53,12 @@ public class TestRegistAction extends Action {
 		req.getRequestDispatcher("test_regist.jsp").forward(req, res);
 =======
 	private void setRequest(HttpServletRequest req, HttpServletResponse res) throws Exception{
+<<<<<<< HEAD
+
+
+=======
 		return ;
+>>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
 >>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
 	}
 }
