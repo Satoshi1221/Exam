@@ -4,23 +4,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.Teacher;
+import bean.Subject;
+import bean.Test;
 import tool.Action;
 
 public class TestRegistAction extends Action {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
 		HttpSession session = req.getSession();
-		Teacher teacher = (Teacher)session.getAttribute("user");
 
-		String entYearStr = "";
-		String classNum = "";
+		Class_Num class_num = new Class_Num();
+		Subject subject = new Subject();
+		Test test = new Test();
 
+		req.getRequestDispatcher("test_regist.jsp").forward(req, res);
 	}
-
-	private void setRequestData(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
+	private void setRequest(HttpServletRequest req, HttpServletResponse res) throws Exception{
+		return ;
 	}
 }
