@@ -7,11 +7,11 @@ import javax.servlet.http.HttpSession;
 import bean.Teacher;
 import tool.Action;
 
-
 public class TestListSubjectExecuteAction extends Action {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		
 		HttpSession session = req.getSession();  // セッション
 		Teacher teacher = (Teacher)session.getAttribute("user");
 
@@ -30,8 +30,6 @@ public class TestListSubjectExecuteAction extends Action {
 		req.setAttribute("1",entYear);
 		req.setAttribute("2",classNum);
 		req.setAttribute("3",point);
-
-
 
 		//フォワード
 		if (save == true) {
