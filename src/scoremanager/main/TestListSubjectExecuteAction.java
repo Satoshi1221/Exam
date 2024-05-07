@@ -11,7 +11,7 @@ public class TestListSubjectExecuteAction extends Action {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		
+
 		HttpSession session = req.getSession();  // セッション
 		Teacher teacher = (Teacher)session.getAttribute("user");
 
@@ -37,5 +37,6 @@ public class TestListSubjectExecuteAction extends Action {
 		} else {
 		req.getRequestDispatcher("test_list.jsp").forward(req, res);
 		}
+
 	}
 }
