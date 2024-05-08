@@ -15,6 +15,7 @@ public class TestListSubjectExecuteAction extends Action {
 		HttpSession session = req.getSession();  // セッション
 		Teacher teacher = (Teacher)session.getAttribute("user");
 
+
 		//入力された値をいれる
 		String entYear = ""; //入学年度
 		String classNum = ""; //クラス
