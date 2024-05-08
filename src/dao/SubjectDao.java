@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.School;
-import bean.Student;
 import bean.Subject;
 
 public class SubjectDao extends Dao {
@@ -64,9 +63,9 @@ public class SubjectDao extends Dao {
 		return subject;
 	}
 
-	public List<Subject> filter(School school) {
+	public List<Subject> filter(School school) throws Exception {
 		// リストを初期化
-		List<Student> list = new ArrayList<>();
+		List<Subject> list = new ArrayList<>();
 		// コネクションを確立
 		Connection connection = getConnection();
 		// プリペアードステートメント
@@ -74,13 +73,29 @@ public class SubjectDao extends Dao {
 
 		try {
 			// プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement("select * from subject where ");
+			statement = connection.prepareStatement("select * from subject where school_cd = ?");
 			// プリペアードステートメントに学校コードをバインド
 			statement.setString(1, school.getCd());
-			// プライベートステートメントを実行
+			// プリペアードステートメントを実行
 			ResultSet rSet = statement.executeQuery();
+
 			// リストへの格納処理を実行
-			list = postFilter(rSet, school);
+			try {
+				// リザルトセットを全件走査
+				while (rSet.next()) {
+					// 学生インスタンスを初期化
+					Subject subject = new Subject();
+					// 学生インスタンスに検索結果をセット
+					subject.setCd(rSet.getString("cd"));
+					subject.setName(rSet.getString("name"));
+					subject.setSchool(school);
+					// リストに追加
+					list.add(subject);
+				}
+			} catch (SQLException | NullPointerException e) {
+				e.printStackTrace();
+			}
+
 		} catch (Exception e) {
 			throw e;
 		} finally {

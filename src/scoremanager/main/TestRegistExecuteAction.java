@@ -1,12 +1,17 @@
 package scoremanager.main;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.Student;
+import bean.School;
+import bean.Subject;
 import bean.Teacher;
-import dao.StudentDao;
+import bean.Test;
+import dao.SubjectDao;
+import dao.TestDao;
 import tool.Action;
 
 public class TestRegistExecuteAction extends Action {
@@ -15,35 +20,51 @@ public class TestRegistExecuteAction extends Action {
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		HttpSession session = req.getSession();
-		Teacher teacher = (Teacher)session.getAttribute("uesr");
+		Teacher teacher = (Teacher)session.getAttribute("user");
+		TestDao testDao = new TestDao();
+		// 変数を用意
+		String entYearStr = "";  // 入力された入学年度
+		int entYear = 0;
+		String classNum = "";  // 入力されたクラス番号
+		School school = teacher.getSchool();
+		String countStr = "";  // 入力されたテストの回数
+		int count = 0;
+		SubjectDao subjectDao = new SubjectDao();
+		TestDao tDao = new TestDao();
+		String subjectCd;
 
-		String entYearStr = req.getParameter("ent_year");
-		int entYear = Integer.parseInt(entYearStr);
-		String no = req.getParameter("no");
-		String name = req.getParameter("name");
-		String classNum = req.getParameter("class_num");
-		Student student = new Student();
-		StudentDao sDao = new StudentDao();
+		// リクエストパラメーターの取得
+		entYearStr = req.getParameter("ent_year");
+		classNum = req.getParameter("class_num");
+		subjectCd = req.getParameter("subject_cd");
+		countStr = req.getParameter("count");
+		Subject subject = subjectDao.get(subjectCd, school);
 
-		student.setSchool(teacher.getSchool());
+		if (entYearStr != null) {
+			entYear = Integer.parseInt(entYearStr);
+		}
 
-		if (entYear == 0) {
-			student.setNo(no);
-			student.setName(name);
-			student.setClassNum(classNum);
-			req.getRequestDispatcher("student_create.jsp").forward(req, res);
-		} else {
-			student.setEntYear(entYear);
-			student.setNo(no);
-			student.setName(name);
-			student.setClassNum(classNum);
-			boolean save = sDao.save(student);
+		if (countStr != null) {
+			count = Integer.parseInt(countStr);
+		}
 
-			if (save == true){
-				req.getRequestDispatcher("student_create_done.jsp").forward(req, res);
-			} else {
-				req.getRequestDispatcher("student_create.jsp").forward(req, res);
+		List<Test> tests = testDao.filter(entYear, classNum, subject, count, school);
+
+		for (Test t: tests) {
+			int point = Integer.parseInt(req.getParameter("point_" + t.getStudent().getNo()));
+			// 入力値のチェック
+			if (point >= 0 && point <= 100) {
+					t.setClassNum(classNum);
+					t.setNo(t.getNo());
+					t.setPoint(point);
+					t.setSchool(school);
+					t.setStudent(t.getStudent());
+					t.setSubject(subject);
+				} else {
+				req.getRequestDispatcher("test_regist.jsp");
 			}
+			tDao.save(tests);
+			req.getRequestDispatcher("test_regist_done.jsp").forward(req, res);
 		}
 	}
 }
