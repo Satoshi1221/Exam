@@ -31,4 +31,47 @@
 						</c:forEach>
 					</select>
 					<label>科目</label>
-					<c:forEach name=""></c:forEach></form></section></c:param></c:import>
+					<select name="class_num">
+						<option value="0">--------</option>
+						<c:forEach var="subject" items="${subject_set}">
+							<option value="${subject.cd}">${subject.cd}</option>
+						</c:forEach>
+					</select>
+					<div class="col-2 text-center">
+						<button class="btn btn-secondary" id="filter-button">検索</button>
+					</div>
+					<p class="my-2 text-end px-4">
+					学生情報
+					</p>
+					<label>学生番号</label>
+					<input type="text" name="no" value="${no}" maxlength="10" required placeholder="学生番号を入力してください">
+					<div class="col-2 text-center">
+						<button class="btn btn-secondary" id="filter-button">検索</button>
+					</div>
+				</form>
+				<c:choose>
+					<c:when test="${students.size()>0}">
+						<div>氏名：${students.name()}</div>
+						<table class="table table-hover">
+							<tr>
+								<th>科目名</th>
+								<th>科目コード</th>
+								<th>回数</th>
+								<th>点数</th>
+								<th></th>
+								<th></th>
+							</tr>
+							<c:forEach var="student" items="${students}">
+								<tr>
+									<td>${subject.name}</td>
+									<td>${subject.kode}</td>
+									<td>${count}</td>
+									<td>${point}</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:when>
+				</c:choose>
+			</section>
+		</c:param>
+	</c:import>
