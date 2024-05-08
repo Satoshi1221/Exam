@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.Subject;
 import bean.Teacher;
-import dao.SubjectDao;
+import dao.ClassNumDao;
+import dao.StudentDao;
 import tool.Action;
 
 public class SubjectListAction extends Action {
@@ -20,15 +20,22 @@ public class SubjectListAction extends Action {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		HttpSession session = req.getSession();  // セッション
-		Teacher teacher = (Teacher)session.getAttribute("user");
+		Util util = (Util)session.getAttribute("user");
+
+		Teacher teacher = getUser(req);
+		ClassNumDao cNumDao = new ClassNumDao();
+		String classNum = "";  // 入力されたクラス番号
+		LocalDate todaysDate = LocalDate.now();  // LocalDateインスタンスを取得
+		int year = todaysDate.getYear();
 
 		String Cd = "";  // 入力された入学年度
 		String Name = "";  // 入力されたクラス番号
-		List<Subject> students = null;  // 学生リスト
-		LocalDate todaysDate = LocalDate.now();  // LocalDateインスタンスを取得
-		int year = todaysDate.getYear();  // 現在の年を取得
-		SubjectDao sDao = new SubjectDao();  // 学生Dao
+		List<Subject> subject = null;  // 学生リスト
+		StudentDao sDao = new StudentDao();  // 学生Dao
+		ClassNumDao cNumDao = new ClassNumDao();  // クラス番号Daoを初期化
 		Map<String, String> errors = new HashMap<>();  // エラーメッセージ
+
+
 
 		// リクエストパラメーターの取得
 		Cd = req.getParameter("f1");
@@ -36,9 +43,9 @@ public class SubjectListAction extends Action {
 
 		// DBからデータ取得
 		// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
-		List<String> list = sDao.filter(teacher.getSchool());
+		List<String> list = cNumDao.filter(teacher.getSchool());
 
-		if (entYear != 0 && !Num.equals("0")) {
+		if (entYear != 0 && !classNum.equals("0")) {
 			// 入学年度とクラス番号を指定
 			students = sDao.filter(teacher.getSchool(), entYear, classNum, isAttend);
 		} else if (entYear != 0 && classNum.equals("0")) {
@@ -73,10 +80,10 @@ public class SubjectListAction extends Action {
 		// リクエストにクラス番号をセット
 		req.setAttribute("f2", Name);
 		// リクエストに学生リストをセット
-		req.setAttribute("subject", subject);
+		req.setAttribute("students", students);
 		// リクエストにデータをセット
-		req.setAttribute("cd_set", list);
-		req.setAttribute("name_set", entYearSet);
+		req.setAttribute("class_num_set", list);
+		req.setAttribute("ent_year_set", entYearSet);
 
 		// JSPへフォワード
 		req.getRequestDispatcher("subject_list.jsp").forward(req, res);
