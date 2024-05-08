@@ -15,28 +15,38 @@ public class TestListSubjectExecuteAction extends Action {
 		HttpSession session = req.getSession();  // セッション
 		Teacher teacher = (Teacher)session.getAttribute("user");
 
-		//入力されたやつぶち込む
+		//入力された値をいれる
 		String entYear = ""; //入学年度
 		String classNum = ""; //クラス
-		String point = ""; //科目成績データ
-		boolean save = tDAO.save(test);
+		String score = ""; //科目成績データ
 
-		//リクエストパラメータ取得(いる？)
+		if (score == null) {
+			test.setentYear(entYear);
+			test.setClassNum(classNum);
+			test.setscore(score);
+			req.getRequestDispatcher("test_list.jsp").forward(req, res);
+		} else {
+			test.setentYear(entYear);
+			test.setClassNum(classNum);
+			test.setscore(score);
+			boolean save = tDao.save(test);
+
+
+
+		//リクエストパラメータ取得
 		entYear = req.getParameter("1"); //入学年度
 		classNum = req.getParameter("2"); //クラス
-		point = req.getParameter("3"); //科目成績データ
+		score = req.getParameter("3"); //科目成績データ
 
-		//レスポンス値ぶち込む
+		//レスポンス値入れる
 		req.setAttribute("1",entYear);
 		req.setAttribute("2",classNum);
-		req.setAttribute("3",point);
+		req.setAttribute("3",score);
 
-		//フォワード
-		if (save == true) {
+		//フォワード{
 			req.getRequestDispatcher("test_list_student.jsp").forward(req, res);
-		} else {
-		req.getRequestDispatcher("test_list.jsp").forward(req, res);
 		}
+
 
 	}
 }
