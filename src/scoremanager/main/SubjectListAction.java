@@ -36,7 +36,7 @@ public class SubjectListAction extends Action {
 
 		// DBからデータ取得
 		// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
-		List<String> list = cNumDao.filter(teacher.getSchool());
+		List<String> list = sDao.filter(teacher.getSchool());
 
 		if (entYear != 0 && !Num.equals("0")) {
 			// 入学年度とクラス番号を指定
@@ -79,7 +79,7 @@ public class SubjectListAction extends Action {
 		req.setAttribute("name_set", entYearSet);
 
 		// JSPへフォワード
-		req.getRequestDispatcher("subjectt_list.jsp").forward(req, res);
+		req.getRequestDispatcher("subject_list.jsp").forward(req, res);
 	}
 
 }
