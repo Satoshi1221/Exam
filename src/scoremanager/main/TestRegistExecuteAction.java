@@ -47,10 +47,7 @@ public class TestRegistExecuteAction extends Action {
 		if (countStr != null) {
 			count = Integer.parseInt(countStr);
 		}
-		System.out.println(entYearStr);
-		System.out.println(classNum);
-		System.out.println(subjectCd);
-		System.out.println(countStr);
+
 		List<Test> tests = testDao.filter(entYear, classNum, subject, count, school);
 
 		for (Test t: tests) {

@@ -21,42 +21,13 @@ public class TestRegistAction extends Action {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
 		HttpSession session = req.getSession();
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-		Teacher teacher = (Teacher)session.getAttribute("user");
-=======
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
-
-		List<String> classList = new ArrayList<>();
-
-		Teacher teacher = (Teacher)session.getAttribute("teacher");
-		String classNum =
-
 		Teacher teacher = (Teacher)session.getAttribute("user");
 		String classNum = "";
-
-		ClassNumDao cDao = new ClassNumDao();
-		classList = cDao.filter(teacher.getSchool());
 		String entYearStr = "";
 
-
-<<<<<<< HEAD
-=======
-=======
->>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
->>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
->>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
-
-<<<<<<< HEAD
 		// 変数を用意
-		String entYearStr = "";  // 入力された入学年度
 		int entYear = 0;
-		String classNum = "";  // 入力されたクラス番号
 		School school = teacher.getSchool();
 		LocalDate todaysDate = LocalDate.now();
 		int year = todaysDate.getYear();
@@ -66,17 +37,7 @@ public class TestRegistAction extends Action {
 		TestDao testDao = new TestDao();
 		String subjectCd;
 		List<Test> tests = null;
-=======
-		Class_Num class_num = new Class_Num();
-		Subject subject = new Subject();
-		Test test = new Test();
 
-<<<<<<< HEAD
-=======
-=======
->>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
->>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
->>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
 
 		// リクエストパラメーターの取得
 		entYearStr = req.getParameter("f1");
@@ -119,39 +80,12 @@ public class TestRegistAction extends Action {
 		// フォワード
 		req.getRequestDispatcher("test_regist.jsp").forward(req, res);
 	}
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
-
->>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
 
 	private void setRequestData(HttpServletRequest req, HttpServletResponse res) throws Exception {
-<<<<<<< HEAD
 		Util util = new Util();
 		util.setClassNumSet(req);
 		util.setEntYearSet(req);
 		util.setSubjects(req);
-=======
-
-
-		req.getRequestDispatcher("test_regist.jsp").forward(req, res);
-	private void setRequest(HttpServletRequest req, HttpServletResponse res) throws Exception{
-
-	private void setRequest(HttpServletRequest req, HttpServletResponse res) throws Exception{
-
-
-		return ;
-
-<<<<<<< HEAD
-
-=======
-=======
->>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
->>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
->>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
 	}
 }
