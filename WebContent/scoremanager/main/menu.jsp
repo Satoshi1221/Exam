@@ -23,7 +23,7 @@
 				<a href="StudentUpdate.action">成績参照</a>
 				<div class="col d-flex align-items-center justify-content-center mx-2 rounded shadow"
 					style="height: 10rem; background-color: #9999CC;">
-					<a href="Subject.action">科目管理</a>
+					<a href="SubjectList.action">科目管理</a>
 				</div>
 			</div>
 		</section>
