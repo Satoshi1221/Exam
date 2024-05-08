@@ -39,7 +39,7 @@ public class Test implements Serializable{
 		return school;
 	}
 
-	public void setSchoot(School school) {
+	public void setSchool(School school) {
 		this.school = school;
 	}
 

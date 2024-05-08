@@ -29,19 +29,6 @@ public class StudentCreateAction extends Action {
 		int year = todaysDate.getYear();  // 現在の年を取得
 		ClassNumDao cNumDao = new ClassNumDao();  // クラス番号Daoを初期化
 
-		// リクエストパラメーターの取得
-
-		/* テストデータ
-		School school = new School();
-		school.setCd("oom");
-		school.setName("学校名");
-		Teacher teacher = new Teacher();
-		teacher.setId("admin");
-		teacher.setName("大原花子");
-		teacher.setPassword("password");
-		teacher.setSchool(school);
-		System.out.println(teacher.getSchool());
-		*/
 
 		// DBからデータ取得
 		// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
