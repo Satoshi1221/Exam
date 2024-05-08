@@ -16,9 +16,9 @@ public class TeacherDao extends Dao {
 
 	public Teacher login(String id, String password) throws Exception {
 
-		// Teacher, Schoolクラスのインスタンスを生成
-		Teacher teacher = new Teacher();
-		School school = new School();
+		// Teacher, Schoolクラスの変数にnullを設定（ID、パスワードが一致しないときnullを返すため）
+		Teacher teacher = null;
+		School school = null;
 
 		// データベースへのコネクションを確立
 		Connection con = getConnection();
@@ -36,6 +36,9 @@ public class TeacherDao extends Dao {
 
 			// リザルトセットを走査
 			while (rs.next()) {
+				// ID、パスワードが一致すればインスタンスを生成
+				teacher = new Teacher();
+				school = new School();
 
 				// teacher, schoolインスタンスにフィールド値をセット
 				teacher.setId(rs.getString("id"));

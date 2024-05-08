@@ -12,12 +12,14 @@
 	<c:param name="content">
 		<section class="login">
 			<h2 class="login-headline">ログイン</h2>
-			<ul>
-				<li>ログインに失敗しました。IDまたはパスワードが正しくありません。</li>
-			</ul>
+			<c:if test="${!empty password}">
+				<ul>
+					<li>ログインに失敗しました。IDまたはパスワードが正しくありません。</li>
+				</ul>
+			</c:if>
 			<form action="LoginExecute.action" method="post">
 				<div class="id-input">
-					<input type="text" name="id" maxlength="20" style="ime-mode: disabled" placeholder="半角でご入力ください" required>
+					<input type="text" name="id" value="${id}" maxlength="20" style="ime-mode: disabled" placeholder="半角でご入力ください" required>
 				</div>
 				<div class="password-input">
 					<input type="password" name="password" id="inputPass" maxlength="20" style="ime-mode: disabled" placeholder="20文字以内の半角英数字でご入力ください" required>

@@ -21,10 +21,14 @@ public class LoginExecuteAction extends Action {
 		Teacher teacher = dao.login(id, password);
 
 		if (teacher != null) {
+			teacher.setAuthenticated(true);
 			session.setAttribute("user", teacher);
 			req.getRequestDispatcher("menu.jsp").forward(req, res);
+			return;
 		}
 
+		req.setAttribute("id", id);
+		req.setAttribute("password", password);
 		req.getRequestDispatcher("login.jsp").forward(req, res);
 
 	}

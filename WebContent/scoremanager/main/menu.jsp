@@ -19,15 +19,7 @@
 			<div class="col d-flex align-items-center justify-content-center mx-2 rounded shadow"
 				style="height: 10rem; background-color: #99cc99;">
 				<div>成績管理</div>
-<<<<<<< HEAD
 				<a href="TestRegist.action">成績登録</a>
-=======
-<<<<<<< HEAD
-				<a href="TestRegist.Action">成績登録</a>
-=======
-				<a href="TestRegist.action">成績登録</a>
->>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
->>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
 				<a href="StudentUpdate.action">成績参照</a>
 				<div class="col d-flex align-items-center justify-content-center mx-2 rounded shadow"
 					style="height: 10rem; background-color: #9999CC;">
