@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
+
+import bean.Subject;
 import bean.Teacher;
 import dao.ClassNumDao;
 import dao.StudentDao;
@@ -24,7 +27,6 @@ public class SubjectListAction extends Action {
 
 		Teacher teacher = getUser(req);
 		ClassNumDao cNumDao = new ClassNumDao();
-		String classNum = "";  // 入力されたクラス番号
 		LocalDate todaysDate = LocalDate.now();  // LocalDateインスタンスを取得
 		int year = todaysDate.getYear();
 
@@ -32,7 +34,6 @@ public class SubjectListAction extends Action {
 		String Name = "";  // 入力されたクラス番号
 		List<Subject> subject = null;  // 学生リスト
 		StudentDao sDao = new StudentDao();  // 学生Dao
-		ClassNumDao cNumDao = new ClassNumDao();  // クラス番号Daoを初期化
 		Map<String, String> errors = new HashMap<>();  // エラーメッセージ
 
 
@@ -45,6 +46,7 @@ public class SubjectListAction extends Action {
 		// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 		List<String> list = cNumDao.filter(teacher.getSchool());
 
+		//↓？？？
 		if (entYear != 0 && !classNum.equals("0")) {
 			// 入学年度とクラス番号を指定
 			students = sDao.filter(teacher.getSchool(), entYear, classNum, isAttend);
