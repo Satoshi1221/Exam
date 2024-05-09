@@ -19,7 +19,7 @@
 				<input type="text" name="name" value="${name}" maxlength="20" required placeholder="科目名を入力してください">
 				<button type="submit" name="end">登録</button>
 			</form>
-			<a href="SubjectCreate.action">戻る</a>
+			<a href="SubjectList.action">戻る</a>
 		</section>
 	</c:param>
 </c:import>
