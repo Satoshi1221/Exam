@@ -15,7 +15,7 @@
 
 			<p>「<td>${subject.cd}</td><td>${subject.name}</td>」を削除してもよろしいですか</p>
 
-		<a href="subject_delete_done.jsp"><button type="submit" >削除</button></a>
+		<a href="SubjectDeleteExecute.action"><button type="submit" >削除</button></a>
 			<a href="SubjectList.action">戻る</a>
 		</section>
 	</c:param>
