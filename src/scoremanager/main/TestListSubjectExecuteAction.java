@@ -23,14 +23,14 @@ public class TestListSubjectExecuteAction extends Action {
 
 		if (point == null) {
 			Test.setEntYear(entYear);
-			Test.setClassNum(classNum);
+			Test.setclassNum(classNum);
 			Test.setPoint(point);
 			req.getRequestDispatcher("test_list.jsp").forward(req, res);
 		} else {
 			Test.setEntYear(entYear);
-			Test.setClassNum(classNum);
+			Test.setclassNum(classNum);
 			Test.setPoint(point);
-			boolean save = tDao.save(test)
+			boolean save = tDao.save(test);
 		}
 
 
