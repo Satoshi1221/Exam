@@ -21,7 +21,7 @@ public class TestListSubjectExecuteAction extends Action {
 		String classNum = ""; //クラス
 		String score = ""; //科目成績データ
 
-		if (score == null) {
+		if (point == null) {
 			Test.setEntYear(entYear);
 			Test.setClassNum(classNum);
 			Test.setPoint(point);
@@ -45,7 +45,8 @@ public class TestListSubjectExecuteAction extends Action {
 		req.setAttribute("3",score);
 
 		//フォワード{
-			req.getRequestDispatcher("test_list_student.jsp").forward(req, res);
+			req.getRequestDispatcher("test_list_student.jsp").forward(req, res);{
+
 		}
 
 
