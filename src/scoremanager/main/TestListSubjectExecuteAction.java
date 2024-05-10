@@ -21,7 +21,8 @@ public class TestListSubjectExecuteAction extends Action {
 		String classNum = ""; //クラス
 		String score = ""; //科目成績データ
 
-		if (point == null) {
+		//チェック
+		if (entYear == null) {
 			Test.setEntYear(entYear);
 			Test.setclassNum(classNum);
 			Test.setPoint(point);
@@ -32,7 +33,6 @@ public class TestListSubjectExecuteAction extends Action {
 			Test.setPoint(point);
 			boolean save = tDao.save(test);
 		}
-
 
 		//リクエストパラメータ取得
 		entYear = req.getParameter("1"); //入学年度
