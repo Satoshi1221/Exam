@@ -55,7 +55,7 @@ public class TestListSubjectDao extends Dao {
 		return list;
 	}
 
-	public List<TestListSubject> filter(int entYaer, String classNum, Subject subject, int num, School school) throws Exception {
+	public List<TestListSubject> filter(int entYear, String classNum, Subject subject, int num, School school) throws Exception {
 		// リストを初期化
 		List<TestListSubject> list = new ArrayList<>();
 		// コネクションを確立
