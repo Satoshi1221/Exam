@@ -28,7 +28,7 @@ public class ClassNumDao extends Dao {
 		try {
 			// プリペアードステートメントにSQL文をセット
 			statement = connection
-					.prepareStatement("select class_num from class where school_cd=? order by class_num");
+					.prepareStatement("select class_num from class_num where school_cd=? order by class_num");
 			// プリペアードステートメントに学校コードをバインド
 			statement.setString(1, school.getCd());
 			// プリペアードステートメントを実行
