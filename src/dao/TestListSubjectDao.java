@@ -11,6 +11,7 @@ import bean.School;
 import bean.Student;
 import bean.Subject;
 import bean.Test;
+import bean.TestListSubject;
 
 public class TestListSubjectDao extends Dao {
 
