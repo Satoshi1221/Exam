@@ -20,7 +20,7 @@
 				style="height: 10rem; background-color: #99cc99;">
 				<div>成績管理</div>
 				<a href="TestRegist.action">成績登録</a>
-				<a href="StudentUpdate.action">成績参照</a>
+				<a href="TestList.action">成績参照</a>
 				<div class="col d-flex align-items-center justify-content-center mx-2 rounded shadow"
 					style="height: 10rem; background-color: #9999CC;">
 					<a href="SubjectList.action">科目管理</a>

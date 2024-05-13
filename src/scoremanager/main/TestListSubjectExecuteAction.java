@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.Teacher;
+import bean.Test;
+import dao.TestDao;
 import tool.Action;
 
 public class TestListSubjectExecuteAction extends Action {
@@ -14,25 +16,23 @@ public class TestListSubjectExecuteAction extends Action {
 
 		HttpSession session = req.getSession();  // セッション
 		Teacher teacher = (Teacher)session.getAttribute("user");
+		Test test = new Test();
 
+		// 入力された値をいれる
+		String entYear = req.getParameter("f1"); //入学年度
+		String classNum = req.getParameter("f2"); //クラス
+		String subject = req.getParameter("f3"); //科目成績データ
+		TestDao tDao = new TestDao();
 
-		//入力された値をいれる
-		String entYear = ""; //入学年度
-		String classNum = ""; //クラス
-		String score = ""; //科目成績データ
-
-		if (score == null) {
-			test.setentYear(entYear);
-			test.setClassNum(classNum);
-			test.setscore(score);
+		// 項目が未入力の場合
+		if (entYear.equals("0") || classNum.equals("0") || subject.equals("0")) {
 			req.getRequestDispatcher("test_list.jsp").forward(req, res);
 		} else {
-			test.setentYear(entYear);
+			test.setEntYear(entYear);
 			test.setClassNum(classNum);
-			test.setscore(score);
+			test.setscore(subject);
 			boolean save = tDao.save(test);
-
-
+		}
 
 		//リクエストパラメータ取得
 		entYear = req.getParameter("1"); //入学年度
@@ -47,7 +47,6 @@ public class TestListSubjectExecuteAction extends Action {
 		//フォワード{
 			req.getRequestDispatcher("test_list_student.jsp").forward(req, res);
 		}
-
 
 	}
 }
