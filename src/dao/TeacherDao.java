@@ -11,7 +11,9 @@ import bean.Teacher;
 public class TeacherDao extends Dao {
 
 	public Teacher get(String id) {
+		Teacher teacher = new Teacher();
 
+		return teacher;
 	}
 
 	public Teacher login(String id, String password) throws Exception {

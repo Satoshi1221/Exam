@@ -16,6 +16,7 @@ public class TestListSubject implements Serializable {
 	}
 
 	public int getEntYear() {
+<<<<<<< HEAD
 
 	}
 
@@ -63,3 +64,53 @@ public class TestListSubject implements Serializable {
 
 	}
 }
+=======
+		return entYear;
+	}
+
+	public void setEntYear(int entYear) {
+		this.entYear = entYear;
+	}
+
+	public String getStudentNo() {
+		return studentNo;
+	}
+
+	public void setStudentNo(String student_no) {
+		this.studentNo = student_no;
+	}
+
+	public String getStudentName() {
+		return studentName;
+	}
+
+	public void setStudentName(String student_name) {
+		this.studentName = student_name;
+	}
+
+	public String getClassNum() {
+		return classNum;
+	}
+
+	public void setClassNum(String classNum) {
+		this.classNum = classNum;
+	}
+
+	public Map<Integer,Integer> getPoints() {
+		return points;
+	}
+
+	public void setPoints(Map<Integer,Integer> points) {
+		this.points = points;
+	}
+
+	public String getPoint(int key) {
+		return String.valueOf(points.get(key));
+	}
+
+	public void putPoint(int key, int value) {
+		points.put(key, value);
+	}
+
+}
+>>>>>>> branch 'master' of https://github.com/Satoshi1221/Exam.git
