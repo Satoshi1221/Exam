@@ -16,47 +16,33 @@ public class StudentCreateAction extends Action {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		//ローカル変数の宣言 1
+		HttpSession session = req.getSession(true);// セッションを取得
+		ClassNumDao cNumDao = new ClassNumDao();// クラス番号Daoを初期化
+		Teacher teacher = (Teacher) session.getAttribute("user");// ログインユーザーを取得
+		LocalDate todaysDate = LocalDate.now();// LcalDateインスタンスを取得
+		int year = todaysDate.getYear();// 現在の年を取得
+		List<Integer> entYearSet = new ArrayList<>();//入学年度のリストを初期化
 
-		HttpSession session = req.getSession();
-		Teacher teacher = (Teacher)session.getAttribute("user");
+		//リクエストパラメータ―の取得 2
+		//なし
 
-		String entYearStr = null;      // 入力された入学年度
-		String studentNum = "";   // 入力された学生番号
-		String studentName = "";  // 入力された氏名
-		String classNum = "";         // 入力されたクラス番号
-		int entYear = 0;              // 入学年度
-		LocalDate todaysDate = LocalDate.now();  // LocalDateインスタンスを取得
-		int year = todaysDate.getYear();  // 現在の年を取得
-		ClassNumDao cNumDao = new ClassNumDao();  // クラス番号Daoを初期化
+		//DBからデータ取得 3
+		List<String> list = cNumDao.filter(teacher.getSchool());// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 
-
-		// DBからデータ取得
-		// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
-		List<String> list = cNumDao.filter(teacher.getSchool());
-
-		// 数値に変換
-		if (entYearStr != null) {
-			entYear = Integer.parseInt(entYearStr);
-		}
-
-		// リストを初期化
-		List<Integer> entYearSet = new ArrayList<>();
-		// 10年前から10年後までの年をリストに追加
-		for (int i = year - 10; i <= year + 10; i++) {
+		//ビジネスロジック 4
+		for (int i = year - 10; i < year + 10; i++) {
 			entYearSet.add(i);
-		}
+		}// 現在を起点に前後10年をリストに追加
 
-		// レスポンス値をセット
-		// リクエストに入学年度をセット
-		req.setAttribute("ent_year_set", entYearSet);
-		// リクエストに学生番号をセット
-		req.setAttribute("no", studentNum);
-		// リクエストに氏名をセット
-		req.setAttribute("name", studentName);
-		// リクエストにクラス番号をセット
-		req.setAttribute("class_num_set", list);
+		//DBへデータ保存 5
+		//なし
 
-		// フォワード
+		//レスポンス値をセット 6
+		req.setAttribute("class_num_set", list);//クラス番号のlistをセット
+		req.setAttribute("ent_year_set", entYearSet);//入学年度のlistをセット
+
+		//JSPへフォワード 7
 		req.getRequestDispatcher("student_create.jsp").forward(req, res);
 	}
 }
