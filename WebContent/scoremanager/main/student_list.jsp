@@ -62,7 +62,6 @@
 							<th>クラス</th>
 							<th class="text-center">在学中</th>
 							<th></th>
-							<th></th>
 						</tr>
 						<c:forEach var="student" items="${students}">
 							<tr>
@@ -70,7 +69,7 @@
 								<td>${student.no}</td>
 								<td>${student.name}</td>
 								<td>${student.classNum}</td>
-								<td class="text-ceter">
+								<td class="text-center">
 									<%-- 在学フラグが立っている場合「○」それ以外は「×」を表示 --%>
 									<c:choose>
 										<c:when test="${student.isAttend()}">
@@ -82,7 +81,6 @@
 									</c:choose>
 								</td>
 								<td><a href="StudentUpdate.action?no=${student.no}">変更</a></td>
-								<td><a href="StudentDelete.action?no=${student.no}">削除</a></td>
 							</tr>
 						</c:forEach>
 					</table>
