@@ -11,18 +11,20 @@
 
 	<c:param name="content">
 		<section class="score">
-			<h2>成績管理</h2>
+			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績管理</h2>
 			<form action="TestRegist.action" method="post">
+			<div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
 				<table>
 					<tr>
 						<th>入学年度</th>
 						<th>クラス</th>
 						<th>科目</th>
 						<th>回数</th>
+						<th></th>
 					</tr>
 					<tr>
 						<th>
-							<select name="f1">
+							<select class="form-select" id="student-f1-select" name="f1">
 								<option value="0">--------</option>
 								<c:forEach var="year" items="${ent_year_set}">
 									<option value="${year}">${year}</option>
@@ -30,7 +32,7 @@
 							</select>
 						</th>
 						<th>
-							<select name="f2">
+							<select class="form-select" id="student-f2-select" name="f2">
 								<option value="0">--------</option>
 								<c:forEach var="num" items="${class_num_set}">
 									<option value="${num}">${num}</option>
@@ -38,7 +40,7 @@
 							</select>
 						</th>
 						<th>
-							<select name="f3">
+							<select class="form-select" id="student-f3-select" name="f3">
 								<option value="0">--------</option>
 								<c:forEach var="subject" items="${subject_set}">
 									<option value="${subject.cd}">${subject.name}</option>
@@ -46,16 +48,19 @@
 							</select>
 						</th>
 						<th>
-							<select name="f4">
+							<select class="form-select" id="student-f4-select" name="f4">
 								<option value="0">--------</option>
 								<c:forEach var="count" begin="1" end="5">
 									<option value="${count}">${count}</option>
 								</c:forEach>
 							</select>
 						</th>
-					</tr>
-				</table>
+				<th>
 				<button class="btn btn-secondary" id="filter-button">検索</button>
+				</th>
+				</tr>
+				</table>
+			</div>
 			</form>
 			<c:if test="${tests.size() > 0}">
 				<form action="TestRegistExecute.action" method="post">
