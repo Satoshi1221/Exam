@@ -54,7 +54,7 @@ public class StudentCreateAction extends Action {
 		// リクエストに氏名をセット
 		req.setAttribute("name", studentName);
 		// リクエストにクラス番号をセット
-		req.setAttribute("class_num", list);
+		req.setAttribute("class_num_set", list);
 
 		// フォワード
 		req.getRequestDispatcher("student_create.jsp").forward(req, res);
