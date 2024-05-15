@@ -42,8 +42,10 @@
 							</c:forEach>
 						</select>
 					</div>
-					<div class="col-2 text-right">
+					<div align="right">
+					<div  class="col-2">
 						<button class="btn btn-secondary" id="filter-button">検索</button>
+					</div>
 					</div>
 					<div class="col-4">
 						<input type="hidden"  name="f">
@@ -65,7 +67,7 @@
 							</c:forEach>
 						</text>
 					</div>
-					<div class="col-2 text-center">
+					<div class="col-2 d-flex align-items-center justify-content-center">
 						<button class="btn btn-secondary" id="filter-button">検索</button>
 					</div>
 					<div class="col-4">
