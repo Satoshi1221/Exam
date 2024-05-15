@@ -37,11 +37,14 @@
 						</select>
 					</div>
 					<div class="col-2 form-check text-center">
-						<label class="form-check-laberl" for="student-f3-check">在学中
+						<label class="form-check-laberl" for="student-f3-check">
+						在学中
 						<%-- パラメーターf3が存在している場合checkedを追記 --%>
+						<div class="text-align : right">
 							<input class="form-check-input" type="checkbox"
 							id="student-f3-check" name="is_attend"
 							<c:if test="${student.is_attend==on}">checked</c:if> />
+						</div>
 						</label>
 					</div>
 					<div class="col-2 text-center">
