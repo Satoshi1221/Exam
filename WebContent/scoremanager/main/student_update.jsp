@@ -24,6 +24,7 @@
 						<label class="form-label" for="student-f1-select">学生番号</label>
 						<input type="text" name="no" value="${no}" readonly>
 					</div>
+
 					<p>
 					<div>
 						<p><label>氏名</label>
