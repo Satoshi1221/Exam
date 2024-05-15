@@ -34,9 +34,9 @@
 					<c:if test="${errors.size()>0}">
 						<div>
 							<ul>
-								<c:forEach var="error" items="${errors}">
-									<li>${error}</li>
-								</c:forEach>
+								<c:if test="${!empty password}||${teacher=null}">
+									<li>ログインに失敗しました。IDまたはパスワードが正しくありません。</li>
+								</c:if>
 							</ul>
 						</div>
 					</c:if>

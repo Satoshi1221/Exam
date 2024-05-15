@@ -42,7 +42,7 @@
 							</c:forEach>
 						</select>
 					</div>
-					<div class="col-2 text-center">
+					<div class="col-2 text-right">
 						<button class="btn btn-secondary" id="filter-button">検索</button>
 					</div>
 					<div class="col-4">
