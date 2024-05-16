@@ -77,8 +77,61 @@
 						</div>
 					</div>
 				</form>
+					<div class="col-4">
+						<th>クラス</th>
+						<select class="form-select" name="f2">
+							<option value="0">--------</option>
+							<c:forEach var="num" items="${class_num_set}">
+								<option value="${num}">${num}</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="col-4">
+						<th>科目</th>
+						<select class="form-select"  name="f3">
+							<option value="0">--------</option>
+							<c:forEach var="subject" items="${subject_set}">
+								<option value="${subject.cd}">${subject.name}</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div align="right">
+					<div  class="col-2">
+						<button class="btn btn-secondary" id="filter-button">検索</button>
+					</div>
+					</div>
+					<div class="col-4">
+						<input type="hidden"  name="f">
+						<c:forEach var="f" items="${class_f_set}">
+							<option value="${sb}" <c:if test="${sb==f}">selected</c:if>>${sb}</option>
+						</c:forEach>
+					</div>
 				</div>
-
+			</form>
+			<p>学生情報</p>
+			<form action="TestListSubjectExecute.action" method="post">
+				<div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
+					<div class="col-4">
+						<div>学生番号</div>
+						<text class="form-text"  name="f4">
+							<input value="学生番号を入力してください">
+							<c:forEach var="f4" items="${ent_f4_set}">
+								<option value="${f4}">${f4}</option>
+							</c:forEach>
+						</text>
+					</div>
+					<div class="col-2 d-flex align-items-center justify-content-center">
+						<button class="btn btn-secondary" id="filter-button">検索</button>
+					</div>
+					<div class="col-4">
+						<input type="hidden"  name="f">
+						<c:forEach var="f" items="${class_f_set}">
+							<option value="${st}" <c:if test="${st==f}">selected</c:if>>${st}</option>
+						</c:forEach>
+					</div>
+					<div class="mt-2 text-warning">${erros.get("f1")}</div>
+				</div>
+			</form>
 			<c:choose>
 				<c:when test="${students.size()>0}">
 					<div>科目：${students.size()}</div>
