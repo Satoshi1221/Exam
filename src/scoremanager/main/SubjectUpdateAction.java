@@ -8,28 +8,7 @@ import tool.Action;
 public class SubjectUpdateAction extends Action {
 
 	@Override
-	public String getJspName() {
+	public execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 	}
-
-	@Override
-	public String getSuccessUrl() {
-
-	}
-
-	@Override
-	public void setRequestData(HttpServletRequest request) {
-
-	}
-
-	@Override
-	public String get(HttpServletRequest request, HttpServletResponse response) {
-
-	}
-
-	@Override
-	public String post(HttpServletRequest request, HttpServletResponse response) {
-
-	}
-
 }
