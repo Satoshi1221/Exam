@@ -1,11 +1,16 @@
 package scoremanager.main;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.School;
+import bean.Subject;
 import bean.Teacher;
 import bean.Test;
+import dao.SubjectDao;
 import dao.TestDao;
 import tool.Action;
 
@@ -14,24 +19,52 @@ public class TestListSubjectExecuteAction extends Action {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-		HttpSession session = req.getSession();  // セッション
+		HttpSession session = req.getSession();
 		Teacher teacher = (Teacher)session.getAttribute("user");
-		Test test = new Test();
-
-
-		// 入力された値をいれる
-		String entYear = req.getParameter("f1"); //入学年度
-		String classNum = req.getParameter("f2"); //クラス
-		String subject = req.getParameter("f3"); //科目成績データ
+		TestDao testDao = new TestDao();
+		// 変数を用意
+		String entYearStr = "";  // 入力された入学年度
+		int entYear = 0;
+		String classNum = "";  // 入力されたクラス番号
+		School school = teacher.getSchool();
+		String countStr = "";  // 入力されたテストの回数
+		int count = 0;
+		SubjectDao subjectDao = new SubjectDao();
 		TestDao tDao = new TestDao();
+		String subjectCd;
 
-		// 項目が未入力の場合
-		if (entYear.equals("0") || classNum.equals("0") || subject.equals("0")) {
-			req.getParameter("test_list.jsp");
+		// リクエストパラメーターの取得
+		entYearStr = req.getParameter("ent_year");
+		classNum = req.getParameter("class_num");
+		subjectCd = req.getParameter("subject_cd");
+		countStr = req.getParameter("count");
+		Subject subject = subjectDao.get(subjectCd, school);
+
+		if (entYearStr != null) {
+			entYear = Integer.parseInt(entYearStr);
 		}
 
-		// フォワード{
-		req.getRequestDispatcher("test_list_student.jsp").forward(req, res);{
+		if (countStr != null) {
+			count = Integer.parseInt(countStr);
+		}
+
+		List<Test> tests = testDao.filter(entYear, classNum, subject, count, school);
+
+		for (Test t: tests) {
+			int point = Integer.parseInt(req.getParameter("point_" + t.getStudent().getNo()));
+			// 入力値のチェック
+			if (point >= 0 && point <= 100) {
+					t.setClassNum(classNum);
+					t.setNo(t.getNo());
+					t.setPoint(point);
+					t.setSchool(school);
+					t.setStudent(t.getStudent());
+					t.setSubject(subject);
+				} else {
+				req.getRequestDispatcher("test_list.jsp");
+			}
+			tDao.save(tests);
+			req.getRequestDispatcher("test_list_student.jsp").forward(req, res);
 
 		}
 
