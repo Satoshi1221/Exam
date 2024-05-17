@@ -119,11 +119,82 @@ public class SubjectDao extends Dao {
 		return list;
 	}
 
-	public boolean save(Subject subject) {
+	public boolean save(Subject subject) throws Exception {
+		// コネクションを確立
+		Connection con = getConnection();
+		// プリペアードステートメント
+		PreparedStatement st = null;
+		// 実行件数
+		int count = 0;
+		String cd = subject.getCd();
+		School school = subject.getSchool();
 
+		try {
+			// データベースから科目を取得
+			Subject old = get(cd, school);
+			if (old == null) {
+				// 科目が存在しなかった場合
+				// プリペアードステートメントにINSERT文をセット
+				st = con.prepareStatement(
+					"insert into subject(school_cd, cd, name) values(?, ?, ?)");
+				// プリペアードステートメントに値をバインド
+				st.setString(1, school.getCd());
+				st.setString(2, cd);
+				st.setString(3, subject.getName());
+			} else {
+				// 科目が存在した場合
+				// プリペアードステートメントにUPDATE文をセット
+				st = con.prepareStatement("update subject set school_cd = ?, name = ? where cd = ?");
+				// プリペアードステートメントに値をバインド
+				st.setString(1, school.getCd());
+				st.setString(2, subject.getName());
+				st.setString(3, cd);
+			}
+			// プリペアードステートメントを実行
+			count = st.executeUpdate();
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			// プリペアードステートメントを閉じる
+			if (st != null) {
+				try {
+					st.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			// コネクションを閉じる
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+		}
+
+		if (count > 0) {
+			// 実行件数が１件以上ある場合
+			return true;
+		} else {
+			// 実行件数が0件の場合
+			return false;
+		}
 	}
 
-	public boolean delete(Subject subject) {
+	public void delete(Subject subject) throws Exception {
+		// コネクションを確立
+		Connection con = ds.getConnection();
 
+		// SQL文
+		PreparedStatement st = con.prepareStatement(
+			"delete from subject where cd = ?");
+		st.setString(1, subject.getCd());
+
+		st.executeUpdate();
+		// プリペアードステートメントを閉じる
+		st.close();
+		// コネクションを閉じる
+		con.close();
 	}
 }

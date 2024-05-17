@@ -12,11 +12,13 @@
 	<c:param name="content">
 		<section class="me-4">
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報削除</h2>
-
-			<p>「<td>${subject.cd}</td><td>${subject.name}</td>」を削除してもよろしいですか</p>
-
-		<a href="SubjectDeleteExecute.action"><button type="submit" >削除</button></a>
-			<a href="SubjectList.action">戻る</a>
+			<form action="SubjectDeleteExecute.action">
+				<p>「${subject.cd}${subject.name}」を削除してもよろしいですか</p>
+				<input type="hidden" name="no" value="${subject.cd}">
+				<input type="hidden" name="name" value="${subject.name}">
+				<button type="submit" >削除</button>
+				<a href="SubjectList.action">戻る</a>
+			</form>
 		</section>
 	</c:param>
 </c:import>

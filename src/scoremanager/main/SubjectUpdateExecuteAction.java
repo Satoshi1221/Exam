@@ -10,7 +10,7 @@ import bean.Teacher;
 import dao.SubjectDao;
 import tool.Action;
 
-public class SubjectUpdateAction extends Action {
+public class SubjectUpdateExecuteAction extends Action {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -18,19 +18,22 @@ public class SubjectUpdateAction extends Action {
 		HttpSession session = req.getSession();
 		Teacher teacher = (Teacher)session.getAttribute("user");
 
+		Subject subject = new Subject();
 		SubjectDao sDao = new SubjectDao();
-		String no = req.getParameter("no");
 		School school = teacher.getSchool();
 
-		// 入力された科目コードの詳細データを取得
-		Subject subject = sDao.get(no, school);
-		String name = subject.getName();
+		// リクエストパラメーターの取得
+		String no = req.getParameter("no");
+		String name = req.getParameter("name");
 
-		// レスポンス値をセット
-		req.setAttribute("no", no);
-		req.setAttribute("name", name);
+		subject.setCd(no);
+		subject.setName(name);
+		subject.setSchool(school);
+
+		// 更新
+		sDao.save(subject);
 
 		// フォワード
-		req.getRequestDispatcher("subject_update.jsp").forward(req, res);
+		req.getRequestDispatcher("subject_update_done.jsp").forward(req, res);
 	}
 }

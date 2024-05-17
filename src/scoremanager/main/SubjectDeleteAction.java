@@ -10,7 +10,7 @@ import bean.Teacher;
 import dao.SubjectDao;
 import tool.Action;
 
-public class SubjectUpdateAction extends Action {
+public class SubjectDeleteAction extends Action {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -24,13 +24,11 @@ public class SubjectUpdateAction extends Action {
 
 		// 入力された科目コードの詳細データを取得
 		Subject subject = sDao.get(no, school);
-		String name = subject.getName();
 
 		// レスポンス値をセット
-		req.setAttribute("no", no);
-		req.setAttribute("name", name);
+		req.setAttribute("subject", subject);
 
 		// フォワード
-		req.getRequestDispatcher("subject_update.jsp").forward(req, res);
+		req.getRequestDispatcher("subject_delete.jsp").forward(req, res);
 	}
 }
